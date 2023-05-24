@@ -4,14 +4,16 @@ import {
   getCurrentUserProfile,
   getCurrentUserPlaylists,
   getTopArtists,
+  getTopTracks,
 } from "../spotify";
-import { SectionWrapper, ArtistsGrid } from "../components";
+import { SectionWrapper, ArtistsGrid, TrackList } from "../components";
 import { StyledHeader } from "../styles";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [playlists, setPlaylists] = useState(null);
   const [topArtists, setTopArtists] = useState(null);
+  const [topTracks, setTopTracks] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +26,10 @@ const Profile = () => {
       const userArtists = await getTopArtists();
       setTopArtists(userArtists.data);
 
-      console.log(userArtists.data);
+      const userTracks = await getTopTracks();
+      setTopTracks(userTracks.data);
+
+      console.log(userTracks.data);
     };
 
     catchErrors(fetchData());
@@ -61,7 +66,7 @@ const Profile = () => {
         </StyledHeader>
       )}
 
-      {topArtists && (
+      {topArtists && topTracks && (
         <main>
           <SectionWrapper
             title="Top artists this month"
@@ -69,27 +74,16 @@ const Profile = () => {
           >
             <ArtistsGrid artists={topArtists.items.slice(0, 10)} />
           </SectionWrapper>
+
+          <SectionWrapper
+            title="Top Tracks this month"
+            seeAllLink="./top-tracks"
+          >
+            <TrackList tracks={topTracks.items.slice(0, 10)} />
+          </SectionWrapper>
         </main>
       )}
     </>
-    //   <>
-    //   <StyledHeader type="user">
-    //     <div className="header__inner">
-    //       {profile.images.length && profile.images[0].url && (
-    //         <img className="header__img" src={profile.images[0].url} alt="Avatar"/>
-    //       )}
-    //       <div>
-    //         <div className="header__overline">Profile</div>
-    //         <h1 className="header__name">{profile.display_name}</h1>
-    //         <p className="header__meta">
-    //           <span>
-    //             {profile.followers.total} Follower{profile.followers.total !== 1 ? 's' : ''}
-    //           </span>
-    //         </p>
-    //       </div>
-    //     </div>
-    //   </StyledHeader>
-    // </>
   );
 };
 
