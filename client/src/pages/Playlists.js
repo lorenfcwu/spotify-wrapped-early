@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { getCurrentUserPlaylists } from "../spotify";
 import { catchErrors } from "../utils";
 import { SectionWrapper, PlaylistsGrid } from "../components";
