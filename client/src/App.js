@@ -7,7 +7,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import { Login, Profile, TopArtists, TopTracks } from "./pages";
+import { Login, Profile, TopArtists, TopTracks, Playlists } from "./pages";
 
 // import styled from "styled-components/macro";
 import { GlobalStyle } from "./styles";
@@ -67,7 +67,7 @@ function App() {
                   path="/playlists/:id"
                   element={<h1>Playlist</h1>}
                 ></Route>
-                <Route path="/playlists" element={<h1>Playlists</h1>}></Route>
+                <Route path="/playlists" element={<Playlists />}></Route>
                 <Route path="/" element={<Profile />}></Route>
               </Routes>
             </Router>
