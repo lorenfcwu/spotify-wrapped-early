@@ -17,9 +17,11 @@ const Playlists = () => {
 
   return (
     <main>
-      <SectionWrapper title="Playlists" breadcrumb={true}>
-        {playlists && <PlaylistsGrid playlists={playlists.items} />}
-      </SectionWrapper>
+      {playlists && (
+        <SectionWrapper title="Playlists" breadcrumb={true}>
+          {playlists && <PlaylistsGrid playlists={playlists.items} />}
+        </SectionWrapper>
+      )}
     </main>
   );
 };
