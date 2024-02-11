@@ -52,3 +52,6 @@
    ```shell
    git push heroku main
    ```
+
+
+ Created following https://www.newline.co/courses/build-a-spotify-connected-app course
